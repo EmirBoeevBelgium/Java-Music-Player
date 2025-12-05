@@ -66,6 +66,44 @@ public class MusicPlayerGUI extends JFrame {
         playbackSlider.setBounds(getWidth()/2 - 300/2, songArtist.getY() + songArtist.getHeight() + 5, 300, 40);
         playbackSlider.setBackground(null);
         add(playbackSlider);
+
+        addPlaybackButtons(playbackSlider);
+
+
+    }
+
+    private void addPlaybackButtons(JSlider lastComponent) {
+        JPanel playBackButtons = new JPanel();
+        playBackButtons.setBounds(0, lastComponent.getY() + lastComponent.getHeight() + 5, getWidth() - 10, 80);
+        playBackButtons.setBackground(null);
+
+        //previous button
+        JButton prevButton = new JButton(loadImage("src/main/java/assets/previous.png"));
+        prevButton.setBorderPainted(false);
+        prevButton.setBackground(null);
+        playBackButtons.add(prevButton);
+
+        //play button
+        JButton playButton = new JButton(loadImage("src/main/java/assets/play.png"));
+        playButton.setBorderPainted(false);
+        playButton.setBackground(null);
+        playBackButtons.add(playButton);
+
+
+        //pause button
+        JButton pauseButton = new JButton(loadImage("src/main/java/assets/pause.png"));
+        pauseButton.setBorderPainted(false);
+        pauseButton.setBackground(null);
+        pauseButton.setVisible(false);
+        playBackButtons.add(pauseButton);
+
+        //forward button
+        JButton nextButton = new JButton(loadImage("src/main/java/assets/next.png"));
+        nextButton.setBorderPainted(false);
+        nextButton.setBackground(null);
+        playBackButtons.add(nextButton);
+
+        add(playBackButtons);
     }
 
     private void addToolbar() {
