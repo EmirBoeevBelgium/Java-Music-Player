@@ -1,6 +1,13 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class MusicPlayerGUI extends JFrame {
+    public static final Color FRAME_COLOR = Color.BLACK;
+    public static final Color TEXT_COLOR = Color.WHITE;
+
     public MusicPlayerGUI() {
         super("Music Player");
 
@@ -21,11 +28,19 @@ public class MusicPlayerGUI extends JFrame {
 
         setLayout(null);
 
+        //change frame color
+        getContentPane().setBackground(FRAME_COLOR);
+
         addGUIComponents();
     }
 
     private void addGUIComponents() {
+        //add toolbar
         addToolbar();
+
+        //load record image
+        JLabel songImage = new JLabel(loadImage("src/main/java/assets/record.png"));
+        songImage.setBounds(0, 50, getWidth() - 20 , 225 );
     }
 
     private void addToolbar() {
@@ -34,7 +49,41 @@ public class MusicPlayerGUI extends JFrame {
         toolBar.setBounds(0, 0, getWidth(), 20);
         //Prevent toolbar from being moved.
         toolBar.setFloatable(false);
+        //add dropdown menu
+        JMenuBar menuBar = new JMenuBar();
+        toolBar.add(menuBar);
+        //add song menu to place loading song option
+        JMenu songMenu = new JMenu("Song");
+        menuBar.add(songMenu);
+
+        JMenuItem loadSong = new JMenuItem("Load Song");
+        songMenu.add(loadSong);
+
+        JMenu playlistMenu = new JMenu("Playlist");
+        menuBar.add(playlistMenu);
+
+        JMenuItem createPlaylist = new JMenuItem("Create Playlist");
+        playlistMenu.add(createPlaylist);
+
+        JMenuItem loadPlaylist = new JMenuItem("Load Playlist");
+        playlistMenu.add(loadPlaylist);
+
+
         add(toolBar);
     }
 
+    private ImageIcon loadImage(String imagePath) {
+        try {
+            // read the image file from the given path
+            BufferedImage image = ImageIO.read(new File(imagePath));
+
+            //return an image icon so our component can render the image
+            return new ImageIcon(image);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
 }
