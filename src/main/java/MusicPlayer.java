@@ -3,5 +3,8 @@ public class MusicPlayer {
 
     private Song currentSong;
 
+    public MusicPlayer() {
+
+    }
 
 }

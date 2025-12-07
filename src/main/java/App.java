@@ -6,6 +6,11 @@ public class App {
             @Override
             public void run(){
                 new MusicPlayerGUI().setVisible(true);
+
+                /*Song song = new Song("src/main/java/At All Costs - The Grey Room _ Golden Palms.mp3");
+                System.out.println(song.getSongTitle());
+                System.out.println(song.getSongArtist());*/
+
             }
         });
     }

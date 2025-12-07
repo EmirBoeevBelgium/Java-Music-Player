@@ -41,4 +41,19 @@ public class Song {
         }
     }
 
+    public String getSongTitle() {
+        return songTitle;
+    }
+
+    public String getSongArtist() {
+        return songArtist;
+    }
+
+    public String getSongLength() {
+        return songLength;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
 }
