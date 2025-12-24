@@ -8,6 +8,12 @@ public class MusicPlayerGUI extends JFrame {
     public static final Color FRAME_COLOR = Color.BLACK;
     public static final Color TEXT_COLOR = Color.WHITE;
 
+    private MusicPlayer musicPlayer;
+
+    //allows file explorer in our app
+
+     private JFileChooser jFileChooser;
+
     public MusicPlayerGUI() {
         super("Music Player");
 
@@ -30,6 +36,11 @@ public class MusicPlayerGUI extends JFrame {
 
         //change frame color
         getContentPane().setBackground(FRAME_COLOR);
+
+        jFileChooser = new JFileChooser();
+
+        // set a default path for file explorer
+        jFileChooser.setCurrentDirectory(new File("src/main/java/songs"));
 
         addGUIComponents();
     }
