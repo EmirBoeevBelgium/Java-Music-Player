@@ -23,6 +23,7 @@ public class MusicPlayer {
         }
     }
 
+
     public void playCurrentSong() {
         try {
             //read mp3 audio file
@@ -38,6 +39,8 @@ public class MusicPlayer {
             e.printStackTrace();
         }
     }
+
+
 
     private void startMusicThread() {
         new Thread(new Runnable() {
