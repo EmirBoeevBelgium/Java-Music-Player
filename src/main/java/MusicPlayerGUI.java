@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,7 +47,7 @@ public class MusicPlayerGUI extends JFrame {
 
         // set a default path for file explorer
         jFileChooser.setCurrentDirectory(new File("src/main/java/songs"));
-
+        jFileChooser.setFileFilter(new FileNameExtensionFilter("MP3", "mp3"));
         addGUIComponents();
     }
 
@@ -111,6 +112,12 @@ public class MusicPlayerGUI extends JFrame {
         pauseButton.setBorderPainted(false);
         pauseButton.setBackground(null);
         pauseButton.setVisible(false);
+        pauseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                enablePlayButton();
+            }
+        });
         playBackButtons.add(pauseButton);
 
         //forward button
@@ -152,10 +159,11 @@ public class MusicPlayerGUI extends JFrame {
                     updateSongTitleAndArtist(song);
 
                     //toggle pause
-                    enablePauseButton(song);
+                    enablePauseButton();
 
-                    //toggle play
-                    enablePlayButton(song);
+
+
+
                 }
             }
         });
@@ -179,7 +187,7 @@ public class MusicPlayerGUI extends JFrame {
         songArtist.setText(song.getSongArtist());
     }
 
-    private void enablePauseButton(Song song) {
+    private void enablePauseButton() {
         //retrieve reference to play button from playbackbuttons panel
         JButton playButton = (JButton) playBackButtons.getComponent(1);
         JButton pauseButton = (JButton) playBackButtons.getComponent(2);
@@ -192,20 +200,25 @@ public class MusicPlayerGUI extends JFrame {
         pauseButton.setVisible(true);
         pauseButton.setEnabled(true);
 
+        //pause song
+        //
+
     }
 
-    private void enablePlayButton(Song song) {
+    private void enablePlayButton() {
         //retrieve reference to play button from playbackbuttons panel
         JButton playButton = (JButton) playBackButtons.getComponent(1);
         JButton pauseButton = (JButton) playBackButtons.getComponent(2);
 
-        //turn off play button
+        //turn on play button
         playButton.setVisible(true);
         playButton.setEnabled(true);
 
-        //turn on pause button
+        //turn off pause button
         pauseButton.setVisible(false);
         pauseButton.setEnabled(false);
+
+        musicPlayer.pauseSong();
 
     }
 
